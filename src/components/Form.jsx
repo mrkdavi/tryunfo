@@ -64,7 +64,7 @@ class Form extends React.Component {
           callback={ onInputChange }
         />
         <Select
-          options="raro;muito raro;normal"
+          options="normal;raro;muito raro"
           testId="rare-input"
           value={ cardRare }
           callback={ onInputChange }
