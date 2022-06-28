@@ -25,15 +25,12 @@ class Select extends React.Component {
   // }
 
   render() {
-    const { options, testId } = this.props;
+    const { options, testId, callback } = this.props;
     const convertedOptions = this.convertProp(options);
     // console.log(convertedOptions);
     const optionsTags = convertedOptions.map(
       (op, i) => (
-        <option
-          key={ i }
-          value={ op }
-        >
+        <option key={ i } value={ op }>
           { op }
         </option>
       ),
@@ -41,7 +38,7 @@ class Select extends React.Component {
     console.log(optionsTags);
     return (
       <label htmlFor="rarity">
-        <select data-testid={ testId }>
+        <select data-testid={ testId } onClick={ callback }>
           { optionsTags }
         </select>
       </label>
@@ -52,6 +49,7 @@ class Select extends React.Component {
 Select.propTypes = {
   options: PropTypes.string.isRequired,
   testId: PropTypes.string.isRequired,
+  callback: PropTypes.func.isRequired,
 };
 
 export default Select;

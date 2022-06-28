@@ -8,7 +8,7 @@ class Input extends React.Component {
   }
 
   render() {
-    const { labelName, type, testId } = this.props;
+    const { labelName, type, testId, value, callback } = this.props;
     const labelNameFormatted = (
       labelName.includes(' ') ? this.removeSpace(labelName) : labelName
     );
@@ -20,9 +20,12 @@ class Input extends React.Component {
           :
         </span>
         <input
+          id={ labelNameFormatted }
+          value={ value }
           type={ type }
           name={ labelNameFormatted }
           data-testid={ testId }
+          onChange={ callback }
         />
       </label>
     );
@@ -33,6 +36,8 @@ Input.propTypes = {
   type: PropTypes.string.isRequired,
   testId: PropTypes.string.isRequired,
   labelName: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+  callback: PropTypes.func.isRequired,
 };
 
 export default Input;
