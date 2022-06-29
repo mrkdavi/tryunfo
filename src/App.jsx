@@ -8,16 +8,18 @@ class App extends React.Component {
     this.state = {
       cardName: '',
       cardDescription: '',
-      cardAttr1: '',
-      cardAttr2: '',
-      cardAttr3: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
       cardImage: '',
       cardRare: 'normal',
       cardTrunfo: false,
       // hasTrunfo: false,
       isSaveButtonDisabled: true,
+      cards: [],
     };
     this.onInputChange = this.onInputChange.bind(this);
+    this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
   }
 
   onValidate = () => {
@@ -32,9 +34,6 @@ class App extends React.Component {
       cardImage,
     } = this.state;
     const sum = (Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3));
-
-    // console.log(cardName, cardDescription, cardImage);
-    // console.log(!cardName, !cardDescription, !cardImage);
     if (!cardName || !cardDescription || !cardImage) {
       return false;
     }
@@ -58,8 +57,6 @@ class App extends React.Component {
     this.setState(() => ({
       isSaveButtonDisabled: status,
     }));
-    // const { isSaveButtonDisabled } = this.state;
-    // console.log(isSaveButtonDisabled);
   }
 
   onInputChange({ target }) {
@@ -70,8 +67,44 @@ class App extends React.Component {
     }), this.onButtonStatusHandler);
   }
 
-  onSaveButtonClick() {
+  onCleanForm = () => {
+    this.setState(() => ({
+      cardName: '',
+      cardDescription: '',
+      cardAttr1: '0',
+      cardAttr2: '0',
+      cardAttr3: '0',
+      cardImage: '',
+      cardRare: 'normal',
+      cardTrunfo: false,
+    }));
+  }
 
+  onSaveButtonClick() {
+    const {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    } = this.state;
+
+    const obj = {
+      cardName,
+      cardDescription,
+      cardAttr1,
+      cardAttr2,
+      cardAttr3,
+      cardImage,
+      cardRare,
+      cardTrunfo,
+    };
+    this.setState((oldValue) => ({
+      cards: [...oldValue.cards, obj],
+    }), this.onCleanForm);
   }
 
   render() {
