@@ -4,6 +4,25 @@ import Input from './Input';
 import Select from './Select';
 
 class Form extends React.Component {
+  verifyHasTrunfo = (hasTrunfo, cardTrunfo, onInputChange) => {
+    if (hasTrunfo) {
+      return <p>Você já tem um Super Trunfo em seu baralho</p>;
+    }
+    return (
+      <label htmlFor="checkbox-input">
+        <span>super Trunfo</span>
+        <input
+          id="checkbox-input"
+          type="checkbox"
+          data-testid="trunfo-input"
+          name="cardTrunfo"
+          checked={ cardTrunfo }
+          onChange={ onInputChange }
+        />
+      </label>
+    );
+  }
+
   render() {
     const {
       cardName,
@@ -76,17 +95,7 @@ class Form extends React.Component {
           name="cardRare"
           callback={ onInputChange }
         />
-        <label htmlFor="checkbox-input">
-          <span>super Trunfo</span>
-          <input
-            id="checkbox-input"
-            type="checkbox"
-            data-testid="trunfo-input"
-            name="cardTrunfo"
-            checked={ cardTrunfo }
-            onChange={ onInputChange }
-          />
-        </label>
+        { this.verifyHasTrunfo(hasTrunfo, cardTrunfo, onInputChange) }
         <input
           value="Salvar"
           type="button"
@@ -94,7 +103,6 @@ class Form extends React.Component {
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
         />
-        <span>{ hasTrunfo + null}</span>
       </form>
     );
   }
