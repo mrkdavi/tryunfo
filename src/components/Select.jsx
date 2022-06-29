@@ -25,9 +25,8 @@ class Select extends React.Component {
   // }
 
   render() {
-    const { options, testId, callback, value } = this.props;
+    const { options, testId, callback, value, name } = this.props;
     const convertedOptions = this.convertProp(options);
-    // console.log(convertedOptions);
     const optionsTags = convertedOptions.map(
       (op, i) => (
         <option key={ i } value={ op }>
@@ -35,10 +34,14 @@ class Select extends React.Component {
         </option>
       ),
     );
-    console.log(optionsTags);
     return (
       <label htmlFor="rarity">
-        <select value={ value } data-testid={ testId } onClick={ callback }>
+        <select
+          name={ name }
+          value={ value }
+          data-testid={ testId }
+          onChange={ callback }
+        >
           { optionsTags }
         </select>
       </label>
@@ -50,6 +53,7 @@ Select.propTypes = {
   options: PropTypes.string.isRequired,
   testId: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   callback: PropTypes.func.isRequired,
 };
 
