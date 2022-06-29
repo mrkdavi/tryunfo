@@ -94,7 +94,7 @@ class Form extends React.Component {
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
         />
-        <span>{ hasTrunfo }</span>
+        <span>{ hasTrunfo + null}</span>
       </form>
     );
   }
