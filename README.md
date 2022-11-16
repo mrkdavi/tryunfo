@@ -22,6 +22,7 @@
 At this project you can create cards to build your own Top Trump deck.
 
 <img src="./assets/tryunfo-page.png" alt="drawing" width="700"/>
+<em>website mockup design</em>
 
 ## 💻 Technology
 - React
